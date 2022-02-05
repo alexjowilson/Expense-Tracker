@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import NewComponentExpenses from './components/Expenses/NewComponentExpenses';
 import NewExpense from './components/NewExpense/NewExpense';
+import AuthContext from './store/auth-context';
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import MainHeader from './components/MainHeader/MainHeader';
+
+
+
 
 
 /* Dummy expenses */
@@ -16,7 +23,7 @@ const DUMMY_EXPENSES = [
 
 const App = () => {
   const[expenses, setExpenses] = useState(DUMMY_EXPENSES);
-
+  const context = useContext(AuthContext);
 
 
   const addExpenseHandler = expense => {
@@ -31,10 +38,18 @@ const App = () => {
 
   /* modern and easier way to create component */
   return (
-    <div>
-      <NewExpense onAppExpense={addExpenseHandler}/>
-      <NewComponentExpenses items={expenses}></NewComponentExpenses> 
-    </div>
+    <Fragment>
+      <MainHeader/>
+      <main>
+        {!context.isLoggedIn && <Login/>}
+        {context.isLoggedIn && 
+          <div>
+            <NewExpense onAppExpense={addExpenseHandler}/>
+            <NewComponentExpenses items={expenses}></NewComponentExpenses> 
+          </div>
+        }
+      </main>
+    </Fragment>
   );
 
   /* old way of creating the element

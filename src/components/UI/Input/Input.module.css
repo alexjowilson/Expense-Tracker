@@ -27,8 +27,8 @@
 
 .control input:focus {
   outline: none;
-  border-color: #4f005f;
-  background: #f6dbfc;
+  border-color: #439dec;
+  background: #6CACE4;
 }
 
 .control.invalid input {

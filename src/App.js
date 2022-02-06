@@ -43,10 +43,10 @@ const App = () => {
       <main>
         {!context.isLoggedIn && <Login/>}
         {context.isLoggedIn && 
-          <div>
-            <NewExpense onAppExpense={addExpenseHandler}/>
-            <NewComponentExpenses items={expenses}></NewComponentExpenses> 
-          </div>
+            <Fragment>
+              <NewExpense onAppExpense={addExpenseHandler}/>
+              <NewComponentExpenses items={expenses}></NewComponentExpenses> 
+            </Fragment>
         }
       </main>
     </Fragment>

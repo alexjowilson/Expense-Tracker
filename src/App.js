@@ -3,12 +3,7 @@ import NewComponentExpenses from './components/Expenses/NewComponentExpenses';
 import NewExpense from './components/NewExpense/NewExpense';
 import AuthContext from './store/auth-context';
 import Login from './components/Login/Login';
-import Home from './components/Home/Home';
 import MainHeader from './components/MainHeader/MainHeader';
-
-
-
-
 
 /* Dummy expenses */
 const DUMMY_EXPENSES = [
@@ -26,8 +21,8 @@ const App = () => {
   const context = useContext(AuthContext);
 
 
+  /* function to handle when the user adds in a new expense */
   const addExpenseHandler = expense => {
-    console.log("In App.js SLIME");
 
     /* add the new expense and copy all existing expenses */
     setExpenses((prevExpenses) => {
@@ -38,27 +33,19 @@ const App = () => {
 
   /* modern and easier way to create component */
   return (
-    <Fragment>
-      <MainHeader/>
-      <main>
-        {!context.isLoggedIn && <Login/>}
-        {context.isLoggedIn && 
-            <Fragment>
-              <NewExpense onAppExpense={addExpenseHandler}/>
-              <NewComponentExpenses items={expenses}></NewComponentExpenses> 
-            </Fragment>
-        }
-      </main>
-    </Fragment>
-  );
 
-  /* old way of creating the element
-  return React.createElement(
-    'div',
-    {}, 
-    React.createElement('h2', {}, "Let's get started Slime!"),
-    React.createElement(NewComponentExpenses, {items: expenses})
+      <Fragment>
+        <MainHeader/>
+        <main>
+          {!context.isLoggedIn && <Login/>}
+          {context.isLoggedIn && 
+              <Fragment>
+                <NewExpense onAppExpense={addExpenseHandler}/>
+                <NewComponentExpenses items={expenses}></NewComponentExpenses> 
+              </Fragment>
+          }
+        </main>
+      </Fragment>
   );
-  */
 }
 export default App;

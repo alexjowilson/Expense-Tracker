@@ -19,44 +19,16 @@ const ExpenseForm = (props) =>
     const titleChangeHandler = (event) =>
     {
         setEnteredTitle(event.target.value);
-        
-        /* updating a whole object*/
-        /*
-        setUserInput({
-            ...userInput,
-            enteredTitle: event.target.value
-        });
-        */
-
-        /* // use this method if you depend on a previous state
-        setUserInput((prevState) => { 
-            return { ...prevState, enteredTitle: event.target.value};
-        });
-        */
-
     };
 
     const amountChangeHandler = (event) => 
     {
         setEnteredAmount(event.target.value);
-        /*
-        setUserInput({
-            ...userInput,
-            enteredAmount: event.target.value
-        });
-        */
     }
 
     const dateChangeHandler = (event) =>
     {
         setEnteredDate(event.target.value);
-
-        /*
-        setUserInput({
-            ...userInput,
-            enteredDate: event.target.value
-        });
-        */
     }
     
 

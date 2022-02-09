@@ -5,6 +5,8 @@ import Input from '../UI/Input/Input';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import AuthContext from '../../store/auth-context';
+import SignUp from './SignUp';
+import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 
 /* email Reducer */
 const emailReducer = (state, action) => {
@@ -43,14 +45,9 @@ const passwordReducer = (state, action) => {
 
 
 const Login = (props) => {
-  /*
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [emailIsValid, setEmailIsValid] = useState();
-  const [enteredPassword, setEnteredPassword] = useState('');
-  const [passwordIsValid, setPasswordIsValid] = useState();
-  */
 
   const [formIsValid, setFormIsValid] = useState(false);
+  const[signUp, setSignUp] = useState(false);
 
   /* email reducer */
   const [emailState, dispatchEmail] = useReducer(
@@ -98,9 +95,11 @@ const Login = (props) => {
     /* Every 2 seconds, check for valid email and password */
     const identifier = setTimeout(() => {
       console.log("Checking for validation");
+
       setFormIsValid(
         emailIsValid && passwordIsValid
       );
+
     }, 2000);    
 
     /* clear current timer, before starting a new one */
@@ -112,36 +111,20 @@ const Login = (props) => {
 
   /* function to handle when the user types in their email */
   const emailChangeHandler = (event) => {
-    //setEnteredEmail(event.target.value);
-
     /* notify the email Reducer */
     dispatchEmail({ // pass the type and the email value
       type: 'USER_INPUT', 
       val: event.target.value
     });
-
-    /*
-    setFormIsValid(
-      event.target.value.includes('@') && passwordState.isValid
-    );
-    */
   };
 
   /* function to handle when the user types in their password */
   const passwordChangeHandler = (event) => {
-    //setEnteredPassword(event.target.value);
-
     /* notify the password Reducer */ 
     dispatchPassword({ // pass the type and the password value
       type: 'USER_PASSWORD',
       val: event.target.value
     });
-
-    /*
-    setFormIsValid(
-      emailState.isValid && event.target.value.trim().length > 6
-    );
-    */
   };
 
   /* function to validate user email */
@@ -154,12 +137,9 @@ const Login = (props) => {
 
   /* function to validate user password */
   const validatePasswordHandler = () => {
-    //setPasswordIsValid(enteredPassword.trim().length > 6);
-
     dispatchPassword({
       type: 'INPUT_BLUR'
     });
-
   };
 
   const submitHandler = (event) => {
@@ -175,43 +155,55 @@ const Login = (props) => {
     {
       passwordInputRef.current.focus();
     }
+  };
 
+  const onHideLoginHandler = () => {
+    setSignUp(true);
   };
 
   return (
-    <Card className={classes.login}>
-      <form onSubmit={submitHandler}>
+    <Router>
 
-        <Input
-          ref={emailInputRef}
-          isValid={emailIsValid}
-          id="email"
-          label="E-Mail"
-          type="email"
-          value={emailState.value}
-          onChange={emailChangeHandler}
-          onBlur={validateEmailHandler}
-        />
+      { !signUp && <Card className={classes.login}>
+        <form onSubmit={submitHandler}>
 
-        <Input
-          ref={passwordInputRef}
-          isValid={passwordIsValid}
-          id="password"
-          label="Password"
-          type="password"
-          value={passwordState.value}
-          onChange={passwordChangeHandler}
-          onBlur={validatePasswordHandler}
-        />
+          <Input
+            ref={emailInputRef}
+            isValid={emailIsValid}
+            id="email"
+            label="E-Mail"
+            type="email"
+            value={emailState.value}
+            onChange={emailChangeHandler}
+            onBlur={validateEmailHandler}
+          />
 
-        <div className={classes.actions}>
-          <Button type="submit" className={classes.btn}> 
-            Login
-          </Button>
-        </div>
+          <Input
+            ref={passwordInputRef}
+            isValid={passwordIsValid}
+            id="password"
+            label="Password"
+            type="password"
+            value={passwordState.value}
+            onChange={passwordChangeHandler}
+            onBlur={validatePasswordHandler}
+          />
 
-      </form>
-    </Card>
+          <div className={classes.actions}>
+            <Button type="submit" className={classes.btn}> 
+              Login
+            </Button>
+            <p>Don't have an account? <Link onClick={onHideLoginHandler} to={`/sign-up`}>Sign up!</Link> </p>
+          </div>
+
+        </form>
+      </Card>}
+
+      <Switch>
+        <Route path="/sign-up" component={SignUp} />
+      </Switch>
+
+    </Router>
   );
 };
 export default Login;

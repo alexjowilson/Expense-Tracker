@@ -3,7 +3,7 @@
 *.log
 *.sql
 *.sqlite
- 
+
 # OS generated files #
 ######################
 .DS_Store?
@@ -12,7 +12,7 @@ Icon?
 Thumbs.db
 *.DS_Store
 .eslintcache
- 
+
 # Xcode
 *.pbxuser
 *.mode1v3
@@ -21,23 +21,24 @@ Thumbs.db
 *.xcuserstate
 project.xcworkspace/
 xcuserdata/
- 
- 
+
+
 # IDE
 *.idea
 *.iml
- 
+
 # Generated files
 /web-app/WEB-INF
+node_modules\*
 build/
 *.[oa]
 *.pyc
- 
+
 # Other source repository archive directories (protects when importing)
 .hg
 .svn
 CVS
- 
+
 # automatic backup files
 *~.nib
 *.swp
@@ -46,5 +47,3 @@ CVS
 Backup[ ]of[ ]*.pages/
 Backup[ ]of[ ]*.key/
 Backup[ ]of[ ]*.numbers/
-
-

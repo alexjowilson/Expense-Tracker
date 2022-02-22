@@ -29,7 +29,7 @@ xcuserdata/
 
 # Generated files
 /web-app/WEB-INF
-node_modules\*
+node_modules/*
 build/
 *.[oa]
 *.pyc

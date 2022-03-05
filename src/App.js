@@ -7,13 +7,13 @@ import MainHeader from './components/MainHeader/MainHeader';
 
 /* Dummy expenses */
 const DUMMY_EXPENSES = [
-  { id: 'e1', title: 'FuboTV', amount: 33.01, date: new Date(2021, 12, 14) },
-  { id: 'e2', title: 'Xbox Game Pass', amount: 16.54, date: new Date(2021, 12, 22) },
-  { id: 'e3', title: 'Xfinity WiFi', amount: 84.99, date: new Date(2020, 11, 1) },
-  { id: 'e4', title: 'Apple News', amount: 5.00, date: new Date(2021, 11, 11) },
-  { id: 'e5', title: 'Rent', amount: 1200, date: new Date(2022, 0, 1) },
-  { id: 'e6', title: 'Xbox Game Pass', amount: 16.54, date: new Date(2022, 1, 22) },
-  { id: 'e7', title: 'FuboTV', amount: 33.01, date: new Date(2022, 2, 14) },
+  { id: 'e1', title: 'FuboTV', category: 'Entertainment', amount: 33.01, date: new Date(2021, 12, 14) },
+  { id: 'e2', title: 'Xbox Game Pass', category: 'Entertainment', amount: 16.54, date: new Date(2021, 12, 22) },
+  { id: 'e3', title: 'Xfinity WiFi', category: 'Utilites', amount: 84.99, date: new Date(2020, 11, 1) },
+  { id: 'e4', title: 'Apple News', category: 'Entertainment', amount: 5.00, date: new Date(2021, 11, 11) },
+  { id: 'e5', title: 'Rent', category: 'Housing', amount: 1200, date: new Date(2022, 0, 1) },
+  { id: 'e6', title: 'Xbox Game Pass', category: 'Entertainment', amount: 16.54, date: new Date(2022, 1, 22) },
+  { id: 'e7', title: 'FuboTV', category: 'Entertainment', amount: 33.01, date: new Date(2022, 2, 14) },
 ];
 
 const App = () => {
@@ -38,10 +38,10 @@ const App = () => {
         <MainHeader/>
         <main>
           {!context.isLoggedIn && <Login/>}
-          {context.isLoggedIn && 
+          {context.isLoggedIn &&
               <Fragment>
                 <NewExpense onAppExpense={addExpenseHandler}/>
-                <NewComponentExpenses items={expenses}></NewComponentExpenses> 
+                <NewComponentExpenses items={expenses}></NewComponentExpenses>
               </Fragment>
           }
         </main>

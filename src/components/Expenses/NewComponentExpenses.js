@@ -3,7 +3,8 @@ import './NewComponentExpenses.css';
 import Card from '../UI/Card';
 import ExpenseFilter from './ExpenseFilter';
 import ExpensesChart from './ExpensesChart';
-import React, { useState } from 'react';
+import PieChart from '../PieChart/PieChart'
+import React, { useState, useEffect } from 'react';
 
 const NewComponentExpenses = (props) => {
 
@@ -12,23 +13,21 @@ const NewComponentExpenses = (props) => {
     const selectedNewYear = (selectedYear) =>
     {
         setFilteredYear(selectedYear);
-        //console.log("The year chosen = " + selectedYear);
     }
 
     /* filter parent array based on year the user selects */
     const filteredExpenses = props.items.filter(expense =>{
-        console.log("filtered year is " + filteredYear);
         return expense.date.getFullYear().toString() === filteredYear;
-    }); 
+    });
 
     return (
         <div>
             <Card className="expenses">
-                <ExpenseFilter 
-                    selected={filteredYear} 
+                <ExpenseFilter
+                    selected={filteredYear}
                     onSelectedNewYear={selectedNewYear}
-                /> 
-                <ExpensesChart expenses={filteredExpenses}></ExpensesChart>
+                />
+              <PieChart expenses={props.categories}></PieChart>
                 <ExpensesList items={filteredExpenses}/>
             </Card>
         </div>

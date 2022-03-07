@@ -26,6 +26,7 @@ const ExpensesFilter = (props) => {
             <option value='2022'>2022</option>
             <option value='2020'>2023</option>
         </select>
+        <label> Click category label to filter</label>
         </div>
     </div>
     );

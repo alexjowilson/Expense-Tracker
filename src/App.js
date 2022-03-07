@@ -15,9 +15,25 @@ const DUMMY_EXPENSES = [
   { id: 'e6', title: 'Xbox Game Pass', category: 'Entertainment', amount: 16.54, date: new Date(2022, 1, 22) },
   { id: 'e7', title: 'FuboTV', category: 'Entertainment', amount: 33.01, date: new Date(2022, 2, 14) },
 ];
-
+const DUMMY_CATEGORIES = [{name: 'Entertainment', total: 0},
+                          {name: 'Housing', total:0},
+                          {name: 'Utilites', total:0}]
 const App = () => {
   const[expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const[categories, setCategories] = useState(DUMMY_CATEGORIES)
+  categories.forEach(gatherTotals);
+  console.log(categories)
+// totals the category values into the category object
+function gatherTotals(category) {
+  category.total = 0
+  const filteredExpenses = expenses.filter(expense =>{
+  return expense.category.toString() === category.name;
+  });
+  const vals = filteredExpenses.map(expense => expense.amount)
+  vals.forEach((item) => {
+    category.total += item;
+  });
+}
   const context = useContext(AuthContext);
 
 
@@ -28,6 +44,14 @@ const App = () => {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses]
     });
+
+    if(!categories.map(category => category.name).includes(expense.category)) {
+      setCategories((prevCategories) => {
+        let newElements = [{ name:expense.category, total:0}, ...prevCategories]
+        newElements.forEach(gatherTotals)
+        return newElements
+    });
+    }
   };
 
 
@@ -41,7 +65,7 @@ const App = () => {
           {context.isLoggedIn &&
               <Fragment>
                 <NewExpense onAppExpense={addExpenseHandler}/>
-                <NewComponentExpenses items={expenses}></NewComponentExpenses>
+                <NewComponentExpenses items={expenses} categories={categories} onCategoriesChange={setCategories}></NewComponentExpenses>
               </Fragment>
           }
         </main>

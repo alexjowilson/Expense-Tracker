@@ -1,6 +1,6 @@
 {
-  "homepage": "http://alexjowilson/First-React-Project",
-  "name": "react-complete-guide",
+  "homepage": "http://alexjowilson/Expense-Tracker",
+  "name": "expense-tracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

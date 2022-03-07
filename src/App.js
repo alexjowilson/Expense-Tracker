@@ -44,7 +44,7 @@ function gatherTotals(category) {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses]
     });
-
+    //when new category is added, update category totals
     if(!categories.map(category => category.name).includes(expense.category)) {
       setCategories((prevCategories) => {
         let newElements = [{ name:expense.category, total:0}, ...prevCategories]

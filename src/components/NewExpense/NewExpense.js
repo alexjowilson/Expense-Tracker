@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './NewExpense.css';
 import ExpenseForm from './ExpenseForm';
 
-const NewExpense = (props) => 
+const NewExpense = (props) =>
 {
 
     const[isEditing, setIsEditing] = useState(false);
@@ -12,7 +12,7 @@ const NewExpense = (props) =>
     {
         const expenseData = {
             ...enteredExpenseData, // copy all elements in enteredExpenseData
-            id: Math.random().toString() // add an additional attribute to this object
+            id: Math.random().toString() // add an id attribute to this object
         }
         props.onAppExpense(expenseData);
         setIsEditing(false); // close the form once submitted
@@ -29,10 +29,10 @@ const NewExpense = (props) =>
     }
 
 
-    return( 
+    return(
     <div className="new-expense">
         {!isEditing && <button onClick={startEditingHandler}>Add New Expense</button>}
-        {isEditing && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} 
+        {isEditing && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler}
         onCancel={stopEditingHandler}/>}
     </div>
     );

@@ -173,12 +173,14 @@ const Login = (props) => {
             id="email"
             label="E-Mail*"
             type="email"
+            placeholder="john@gmail.com"
             value={emailState.value}
             onChange={emailChangeHandler}
             onBlur={validateEmailHandler}
           />
 
           <Input
+            placeholder="enter password"
             ref={passwordInputRef}
             isValid={passwordIsValid}
             id="password"

@@ -65,11 +65,11 @@ const ExpenseForm = (props) =>
         <div className='new-expense__controls'>
             <div className='new-expense__control'>
                 <label>Title</label>
-                <input type='text' value={enteredTitle} onChange={titleChangeHandler} />
+                <input type='text' value={enteredTitle} onChange={titleChangeHandler} placeholder='Shoes'/>
             </div>
             <div className='new-expense__control'>
                 <label>Category</label>
-                <input type='text' value={enteredCategory} onChange={categoryChangeHandler} />
+                <input type='text' value={enteredCategory} onChange={categoryChangeHandler} placeholder='Clothing'/>
             </div>
             <div className='new-expense__control'>
                 <label>Amount ($)</label>

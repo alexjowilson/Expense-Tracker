@@ -1,6 +1,7 @@
 import React from 'react';
 import ExpensesChart from './ExpensesChart';
 import PieChart from '../PieChart/PieChart';
+import BarChart from '../PieChart/BarChart';
 import './ExpensesList.css';
 
 const ChartList = props => {
@@ -12,6 +13,9 @@ const ChartList = props => {
 
         case "Pie":
               return(<PieChart expenses={props.categories}></PieChart>)
+
+        case "Horizontal":
+              return(<BarChart expenses={props.categories}></BarChart>)
 
         default:
             return(<ExpensesChart expenses={props.expenses}></ExpensesChart>)

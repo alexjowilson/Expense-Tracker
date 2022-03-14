@@ -21,6 +21,7 @@ const DUMMY_CATEGORIES = [{name: 'Entertainment', total: 0},
 const App = () => {
   const[expenses, setExpenses] = useState(DUMMY_EXPENSES);
   const[categories, setCategories] = useState(DUMMY_CATEGORIES)
+  const[isEditing, setIsEditing] = useState()
   categories.forEach(gatherTotals);
 // totals the category values into the category object
 function gatherTotals(category) {
@@ -43,7 +44,7 @@ function gatherTotals(category) {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses]
     });
-
+    setIsEditing(expense)
     //when new category is added, update category totals
     if(!categories.map(category => category.name).includes(expense.category)) {
       setCategories((prevCategories) => {
@@ -52,6 +53,7 @@ function gatherTotals(category) {
         return newElements
     });
     }
+    setIsEditing()
   };
 
 
@@ -65,7 +67,7 @@ function gatherTotals(category) {
           {context.isLoggedIn &&
               <Fragment>
                 <NewExpense onAppExpense={addExpenseHandler}/>
-                <NewComponentExpenses items={expenses} categories={categories} recalculateTotals={gatherTotals}></NewComponentExpenses>
+                <NewComponentExpenses items={expenses} categories={categories} recalculateTotals={gatherTotals} addExpense={addExpenseHandler}></NewComponentExpenses>
               </Fragment>
           }
         </main>

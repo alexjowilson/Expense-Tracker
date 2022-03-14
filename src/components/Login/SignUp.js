@@ -63,7 +63,7 @@ const SignUp = () => {
     );
 
     /*  useEffect will only run if either
-        enteredEmail, or enteredPassword changed    
+        enteredEmail, or enteredPassword changed
     */
 
     const { isValid: emailIsValid } = emailState;
@@ -125,7 +125,7 @@ const SignUp = () => {
     const submitHandler = useCallback(async (event) => {
         event.preventDefault(); // prevent default HTTP request
         setErrorOn(true); // no errors prior to call to database
-        setErrorMessage(null); // no error message initially 
+        setErrorMessage(null); // no error message initially
 
         /* if username and password valid */
         if (formIsValid) {
@@ -171,7 +171,7 @@ const SignUp = () => {
                         ref={emailInputRef}
                         isValid={emailIsValid}
                         id="email"
-                        label="E-Mail"
+                        label="E-Mail*"
                         type="email"
                         value={emailState.value}
                         onChange={emailChangeHandler}
@@ -182,7 +182,7 @@ const SignUp = () => {
                         ref={passwordInputRef}
                         isValid={passwordIsValid}
                         id="password"
-                        label="Password"
+                        label="Password*"
                         type="password"
                         value={passwordState.value}
                         onChange={passwordChangeHandler}

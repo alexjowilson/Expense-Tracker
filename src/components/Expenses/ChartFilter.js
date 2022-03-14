@@ -14,19 +14,20 @@ const ChartFilter = (props) => {
 
         console.log("the chart you chose is " + event.target.value);
     }
-    
+
     return (
         <div className='chart-filter'>
             <div className='chart-filter__control'>
             <label>Graph Type</label>
             <select value={props.selected} onChange={handleDropDownChange}>
-                <option value='Bar'>Bar</option>
+                <option value='Bar'>Overview</option>
                 <option value='Pie'>Pie</option>
+                <option value='Horizontal'>Bar</option>
             </select>
             </div>
         </div>
         );
-  
+
 };
 
 export default ChartFilter;

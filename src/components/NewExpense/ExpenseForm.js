@@ -72,7 +72,7 @@ const ExpenseForm = (props) =>
                 <input type='text' value={enteredCategory} onChange={categoryChangeHandler} />
             </div>
             <div className='new-expense__control'>
-                <label>Amount</label>
+                <label>Amount ($)</label>
                 <input type='number' value={enteredAmount} onChange={amountChangeHandler} min="0.01" step="0.01"/>
             </div>
             <div className='new-expense__control'>

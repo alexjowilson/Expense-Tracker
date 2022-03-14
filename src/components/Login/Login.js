@@ -15,7 +15,7 @@ const emailReducer = (state, action) => {
   if(action.type === 'USER_INPUT')
   {
     /* return if it a valid email  */
-    return { value: action.val, isValid: action.val.includes('@')}; 
+    return { value: action.val, isValid: action.val.includes('@')};
   }
 
   if(action.type === 'INPUT_BLUR')
@@ -36,7 +36,7 @@ const passwordReducer = (state, action) => {
 
   if(action.type === 'INPUT_BLUR')
   {
-    return {value: state.value, isValid: state.value.trim().length > 6}; 
+    return {value: state.value, isValid: state.value.trim().length > 6};
   }
 
   return {value: '', isValid: false};
@@ -51,10 +51,10 @@ const Login = (props) => {
 
   /* email reducer */
   const [emailState, dispatchEmail] = useReducer(
-    emailReducer, 
+    emailReducer,
     {
       value: '',
-      isValid: null 
+      isValid: null
     }
   );
 
@@ -77,7 +77,7 @@ const Login = (props) => {
   }, []);
 
   /*  useEffect will only run if either
-      enteredEmail, or enteredPassword changed    
+      enteredEmail, or enteredPassword changed
   */
 
   const { isValid: emailIsValid } = emailState;
@@ -100,7 +100,7 @@ const Login = (props) => {
         emailIsValid && passwordIsValid
       );
 
-    }, 2000);    
+    }, 2000);
 
     /* clear current timer, before starting a new one */
     return () => {
@@ -113,14 +113,14 @@ const Login = (props) => {
   const emailChangeHandler = (event) => {
     /* notify the email Reducer */
     dispatchEmail({ // pass the type and the email value
-      type: 'USER_INPUT', 
+      type: 'USER_INPUT',
       val: event.target.value
     });
   };
 
   /* function to handle when the user types in their password */
   const passwordChangeHandler = (event) => {
-    /* notify the password Reducer */ 
+    /* notify the password Reducer */
     dispatchPassword({ // pass the type and the password value
       type: 'USER_PASSWORD',
       val: event.target.value
@@ -171,18 +171,20 @@ const Login = (props) => {
             ref={emailInputRef}
             isValid={emailIsValid}
             id="email"
-            label="E-Mail"
+            label="E-Mail*"
             type="email"
+            placeholder="john@gmail.com"
             value={emailState.value}
             onChange={emailChangeHandler}
             onBlur={validateEmailHandler}
           />
 
           <Input
+            placeholder="enter password"
             ref={passwordInputRef}
             isValid={passwordIsValid}
             id="password"
-            label="Password"
+            label="Password*"
             type="password"
             value={passwordState.value}
             onChange={passwordChangeHandler}
@@ -190,7 +192,7 @@ const Login = (props) => {
           />
 
           <div className={classes.actions}>
-            <Button type="submit" className={classes.btn}> 
+            <Button type="submit" className={classes.btn}>
               Login
             </Button>
             <p>Don't have an account? <Link onClick={onHideLoginHandler} to={`/sign-up`}>Sign up!</Link> </p>

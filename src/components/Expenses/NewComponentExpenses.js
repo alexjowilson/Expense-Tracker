@@ -25,7 +25,7 @@ const NewComponentExpenses = (props) => {
 
     useEffect(() => {
       setCategories(filteredExpenses)
-    }, [filteredYear]);
+    }, [filteredYear, props.addExpense]);
 
     /* filter parent array based on year the user selects */
     const filteredExpenses = props.items.filter(expense =>{
